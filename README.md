@@ -1,47 +1,31 @@
-# Svelte + Vite
+# Interactive Article: What Do "Prior" and "Posterior" Mean?
 
-This template should help get you started developing with Svelte in Vite.
+This project provides an article where we explore the concepts of **prior** and **posterior** beliefs in Bayesian statistics. The article is created using Svelte and designed for a non-technical audience, using an interactive slideshow structure to explain these ideas step by step.
 
-## Recommended IDE Setup
+You can access the article [here](https://6736d946990f560008dc3ee0--bespoke-chebakia-8b4932.netlify.app/).
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## Article Structure
 
-## Need an official Svelte framework?
+The article is divided into three sections:
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+### Part I: Setting the Prior
 
-## Technical considerations
+In this part, you'll set your initial belief (the **prior**) about the weight of a mystery box using a slider. The slider lets you adjust your prior from a broad range (indicating high uncertainty) to a narrow range (indicating high confidence). This allows you to visualize how much "weight" your prior belief carries.
 
-**Why use this over SvelteKit?**
+**Visualization:**  
+- A slider with two handles allows you to adjust the range for your prior belief, which represents different levels of uncertainty in your initial guess.
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+### Part II: Updating Beliefs
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+Once your prior is set, it's time to gather data. You can click the 'See Data' button to reveal new weight measurements. As you observe these data points, you'll notice that the range of possible values becomes more focused. This is the process of **updating** — where new evidence helps refine our belief.
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+**Visualization:**  
+- A set of individual data points is displayed to show the new information, and they turn into a histogram (using animated transitions implemented in D3) to show you how the weights are distributed around a more specific value.
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+### Part III: Building the Posterior Belief
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+Finally, we combine the prior belief and the new data to form the **posterior** — the updated belief. This section visually shows how the prior and the data distribution merge to form the posterior. I hope you experiment with the sliders to see how changes in the data affect the posterior.
 
-**Why include `.vscode/extensions.json`?**
+**Visualization:**  
+- A graph shows the prior distribution, the observed data distribution, and the posterior distribution. The data and posterior curves adjust dynamically as you modify the value of the data’s mean and standard deviation.
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
